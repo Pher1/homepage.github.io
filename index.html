@@ -1,57 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title><!doctype html>
-        <html lang="zh-CN">
-        <head>
-        <meta charset="utf-8">
-        <title>初旭 — 学术主页</title>
+    <meta charset="utf-8">
+    <title>初旭 — 学术主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+                .paper-focus {
+            /* 确保动画在普通高亮之上 */
+            animation-name: focus-highlight;
+            animation-duration: 2s; /* 动画持续2秒 */
+            animation-timing-function: ease-out;
+            /* 确保在动画期间背景色被覆盖 */
+            background-color: #fff3cd;
+        }
+
+        /* --- 原有样式 --- */
+        /* 高亮对应期刊的所有论文 */
+        .paper-highlight {
+            background-color: #fff3cd; /* 柔和一点的黄底 */
+            border-radius: 4px;
+            padding: 2px 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* --- 新增：图片滚动展示器样式 --- */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* 容器 */
+        .slideshow-container {
+            max-width: 1500px; /* 您可以调整这个宽度 */
+            position: relative;
+            margin: auto;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #f0f0f0; /* 预加载时的底色 */
+        }
+
+        /* 单个幻灯片 */
+        .mySlides {
+            display: none;
+            height: 0;
+            /* 保持 16:9 或 2:1 的宽高比, 800x400 -> 50% */
+            /* 使用 padding-top 来撑开高度 */
+            padding-top: 50%; /* 800x400 图像的宽高比 */
+            position: relative;
+        }
+
+        .mySlides img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 图像将覆盖整个区域 */
+            background-color: #555; /* 图片加载失败时的底色 */
+        }
+
+        /* 幻灯片上的文字 (新闻链接) */
+        .text {
+            color: #ffffff;
+            font-size: 1.25rem; /* 增大字体 */
+            padding: 16px;
+            position: absolute;
+            bottom: 16px; /* 距离底部 */
+            left: 16px;  /* 距离左侧 */
+            width: calc(100% - 32px); /* 留出边距 */
+            text-align: left;
+            background-color: rgba(0, 0, 0, 0.6); /* 半透明黑色背景 */
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .text a {
+            color: #ffffff; /* 链接白色 */
+            text-decoration: none; /* 去掉下划线 */
+            transition: color 0.3s ease;
+        }
+
+        .text a:hover {
+            color: #ddd; /* 悬停时颜色变浅 */
+        }
+
+        /* 上一张/下一张 按钮 */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -28px; /* 调整垂直居中 */
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.3s ease;
+            border-radius: 0 4px 4px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* "下一张" 按钮放在右边 */
+        .next {
+            right: 0;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* 下方的"点" (导航) */
+        .dot-container {
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 13px;
+            width: 13px;
+            margin: 0 4px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+        /* 渐入渐出动画 */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.0s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0.6
+            }
+            to {
+                opacity: 1
+            }
+        }
+         @keyframes fade {
+            from {
+                opacity: 0.6
+            }
+            to {
+                opacity: 1
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Xu Chu 初旭</h1>
+    <h1>Xu Chu 初旭</h1>
 
-<p>
-    <a href="https://cfcs.pku.edu.cn/english/">Center on Frontiers of Computing Studies</a><br>
-    <a href="https://cs.pku.edu.cn/">School of Computer Science</a><br>
-    <a href="https://www.pku.edu.cn/">Peking University</a>
-</p>
+    <p>
+        <a href="https://cfcs.pku.edu.cn/english/">Center on Frontiers of Computing Studies</a><br>
+        <a href="https://cs.pku.edu.cn/">School of Computer Science</a><br>
+        <a href="https://www.pku.edu.cn/">Peking University</a>
+    </p>
 
-<p>
-    Email: chu_xu@pku.edu.cn<br>
-    Office: Room 206-1, Courtyard No.5, Jingyuan, Peking University, Beijing, P.R. China<br>
-    Mailing address: Courtyard No.5, Jingyuan, No.5 Yiheyuan Road, 100871, Beijing, P.R. China
-</p>
-<hr>
-<p>
-    I am .....
-</p>
-<hr>
-<h2>News</h2>
-<ul class="news-list">
-  <li class="news-item" data-year="2025" data-level="A" data-venue="ACL"><a href="#paper-2025-A-ACL-1">3 papers accepted @ ACL 2025</a></li>
-  <li class="news-item" data-year="2025" data-level="B" data-venue="EMNLP"><a href="#paper-2025-B-EMNLP-1">3 papers accepted @ EMNLP 2025</a></li>
-  <li class="news-item" data-year="2025" data-level="A" data-venue="NeurIPS"><a href="#paper-2025-A-NEURIPS-1">2 papers accepted @ NeurIPS 2025</a></li>
-  <li class="news-item" data-year="2025" data-level="A" data-venue="AAAI"><a href="#paper-2025-A-AAAI-1">2 papers accepted @ AAAI 2025</a></li>
-  <li class="news-item" data-year="2025" data-level="A" data-venue="ICML"><a href="#paper-2025-A-ICML-1">1 paper accepted @ ICML 2025</a></li>
-  <li class="news-item" data-year="2025" data-level="A" data-venue="KDD"><a href="#paper-2025-A-KDD-1">1 paper accepted @ KDD 2025</a></li>
-</ul>
-<hr>
-<h2>Research</h2>
+    <p>
+        Email: chu_xu@pku.edu.cn<br>
+        Office: Room 206-1, Courtyard No.5, Jingyuan, Peking University, Beijing, P.R. China<br>
+        Mailing address: Courtyard No.5, Jingyuan, No.5 Yiheyuan Road, 100871, Beijing, P.R. China
+    </p>
+    <hr>
+    <p>
+        I am .....
+    </p>
+    <hr>
 
-<h3>Journal Papers</h3>
-<ul>
-    <li id="paper-2025-X-KBS-1" data-year="2025" data-level="" data-venue="KBS"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=KrR9i8YAAAAJ&cstart=20&pagesize=80&citation_for_view=KrR9i8YAAAAJ:NMxIlDl6LWMC">LoRA Dropout as a Sparsity Regularizer for Overfitting Reduction</a>. Y Lin, X Ma, X Chu, Y Jin, Z Yang, Y Wang. KBS 2025</li>
-    <li id="paper-2025-X-UNKNOWN-1" data-year="2025" data-level="" data-venue=""><a href="https://spj.science.org/doi/full/10.34133/hds.0280">Exploring the relationship between dietary intake and clinical outcomes in peritoneal dialysis patients stratified by serum albumin levels: A 12-year follow-up using fine …</a>. Y Wu, J Gao, W Tang, C Su, Y Zhu, T Wang, L Wang, W Liao, X Chu, ....  2025</li>
-    <li id="paper-2023-X-ACM-TCH-1" data-year="2023" data-level="" data-venue="ACM TCH"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=KrR9i8YAAAAJ&cstart=20&pagesize=80&citation_for_view=KrR9i8YAAAAJ:MXK_kJrjxJIC">Towards sustainable compressive population health: A GAN-based year-by-year imputation method</a>. Y Feng, J Wang, Y Wang, X Chu. ACM TCH 2023</li>
-    <li id="paper-2023-X-UNKNOWN-1" data-year="2023" data-level="" data-venue=""><a href="https://www.worldscientific.com/doi/abs/10.1142/S0218001423500143">An Adaptive Fusion Risk-Zone Detection Network and its Application</a>. J Ma, X Wang, Y Wang, X Chu, J Zhao. IJPRAI 2023</li>
-    <li id="paper-2022-X-TKDE-1" data-year="2022" data-level="" data-venue="TKDE"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=KrR9i8YAAAAJ&citation_for_view=KrR9i8YAAAAJ:hqOjcs7Dif8C">Patient health representation learning via correlational sparse prior of medical features</a>. X Ma, Y Wang, X Chu, L Ma, W Tang, J Zhao, Y Yuan, G Wang. TKDE 2022</li>
-    <li id="paper-2022-X-IEEE-TBD-1" data-year="2022" data-level="" data-venue="IEEE TBD"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=KrR9i8YAAAAJ&cstart=20&pagesize=80&citation_for_view=KrR9i8YAAAAJ:0EnyYjriUFMC">Spatial-attention and demographic-augmented generative adversarial imputation network for population health data reconstruction</a>. Y Feng, J Wang, Y Wang, X Chu. IEEE TBD 2022</li>
-    <li id="paper-2022-X-UNKNOWN-1" data-year="2022" data-level="" data-venue=""><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=KrR9i8YAAAAJ&cstart=20&pagesize=80&citation_for_view=KrR9i8YAAAAJ:Zph67rFs4hoC">Enhancing online epidemic supervising system by compartmental and gru fusion model</a>. J Ma, X Wang, Y Wang, J Wang, X Chu, J Zhao. Mob. Inf. Syst. 2022</li>
-    <li id="paper-2024-X-UNKNOWN-2" data-year="2024" data-level="" data-venue=""><a href="https://www.jos.org.cn/jos/ch/reader/view_abstract.aspx?file_no=7065">面向鲁棒图结构防御的过参数化图神经网络</a>. 初旭， 马辛宇， 林阳， 王鑫， 王亚沙， 朱文武， 梅宏. 软件学报 2024</li>
-</ul>
+    <h2>News</h2>
 
-<h3>Conference Papers</h3>
+    <!-- 1. 新增：滚动展示器 HTML 结构 -->
+    <div class="slideshow-container" id="news-slideshow">
+        <!-- 幻灯片将由 JS 动态插入这里 -->
+
+        <!-- 上一张/下一张 按钮 -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <!-- 导航圆点 -->
+    <div class="dot-container" id="news-dots">
+        <!-- 圆点将由 JS 动态插入这里 -->
+    </div>
+
+
+    <!-- 2. 保留：原始 News 列表 (将被 JS 隐藏，用于数据源) -->
+    <ul class="news-list">
+        <li class="news-item" data-year="2025" data-level="A" data-venue="ACL"><a href="#paper-2025-A-ACL-1">3 papers accepted @ ACL 2025</a></li>
+        <li class="news-item" data-year="2025" data-level="B" data-venue="EMNLP"><a href="#paper-2025-B-EMNLP-1">3 papers accepted @ EMNLP 2025</a></li>
+        <li class="news-item" data-year="2025" data-level="A" data-venue="NeurIPS"><a href="#paper-2025-A-NEURIPS-1">2 papers accepted @ NeurIPS 2025</a></li>
+        <li class="news-item" data-year="2025" data-level="A" data-venue="AAAI"><a href="#paper-2025-A-AAAI-1">2 papers accepted @ AAAI 2025</a></li>
+        <li class="news-item" data-year="2025" data-level="A" data-venue="ICML"><a href="#paper-2025-A-ICML-1">1 paper accepted @ ICML 2025</a></li>
+        <li class="news-item" data-year="2025" data-level="A" data-venue="KDD"><a href="#paper-2025-A-KDD-1">1 paper accepted @ KDD 2025</a></li>
+    </ul>
+    <hr>
+
+    <h2>Research</h2>
+
+
+
+<h3>Selected Conference Papers</h3>
 
 
 <ul>
@@ -118,76 +274,212 @@
     <li id="paper-2017-X-ARXIV-1" data-year="2017" data-level="" data-venue="arXiv"><a href="https://arxiv.org/abs/1709.04763">Motif-based Rule Discovery for Predicting Real-valued Time Series</a>. Y He, X Chu, J Peng, J Gao, Y Wang. arXiv 2017</li>
   </ul>
 
-
-
-</body>
+<h3>Selected Journal Papers</h3>
+<ul>
+    <li id="paper-2025-X-KBS-1" data-year="2025" data-level="" data-venue="KBS"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=KrR9i8YAAAAJ&cstart=20&pagesize=80&citation_for_view=KrR9i8YAAAAJ:NMxIlDl6LWMC">LoRA Dropout as a Sparsity Regularizer for Overfitting Reduction</a>. Y Lin, X Ma, X Chu, Y Jin, Z Yang, Y Wang. KBS 2025</li>
+    <li id="paper-2025-X-UNKNOWN-1" data-year="2025" data-level="" data-venue=""><a href="https://spj.science.org/doi/full/10.34133/hds.0280">Exploring the relationship between dietary intake and clinical outcomes in peritoneal dialysis patients stratified by serum albumin levels: A 12-year follow-up using fine …</a>. Y Wu, J Gao, W Tang, C Su, Y Zhu, T Wang, L Wang, W Liao, X Chu, ....  2025</li>
+    <li id="paper-2023-X-ACM-TCH-1" data-year="2023" data-level="" data-venue="ACM TCH"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=KrR9i8YAAAAJ&cstart=20&pagesize=80&citation_for_view=KrR9i8YAAAAJ:MXK_kJrjxJIC">Towards sustainable compressive population health: A GAN-based year-by-year imputation method</a>. Y Feng, J Wang, Y Wang, X Chu. ACM TCH 2023</li>
+    <li id="paper-2023-X-UNKNOWN-1" data-year="2023" data-level="" data-venue=""><a href="https://www.worldscientific.com/doi/abs/10.1142/S0218001423500143">An Adaptive Fusion Risk-Zone Detection Network and its Application</a>. J Ma, X Wang, Y Wang, X Chu, J Zhao. IJPRAI 2023</li>
+    <li id="paper-2022-X-TKDE-1" data-year="2022" data-level="" data-venue="TKDE"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=KrR9i8YAAAAJ&citation_for_view=KrR9i8YAAAAJ:hqOjcs7Dif8C">Patient health representation learning via correlational sparse prior of medical features</a>. X Ma, Y Wang, X Chu, L Ma, W Tang, J Zhao, Y Yuan, G Wang. TKDE 2022</li>
+    <li id="paper-2022-X-IEEE-TBD-1" data-year="2022" data-level="" data-venue="IEEE TBD"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=KrR9i8YAAAAJ&cstart=20&pagesize=80&citation_for_view=KrR9i8YAAAAJ:0EnyYjriUFMC">Spatial-attention and demographic-augmented generative adversarial imputation network for population health data reconstruction</a>. Y Feng, J Wang, Y Wang, X Chu. IEEE TBD 2022</li>
+    <li id="paper-2022-X-UNKNOWN-1" data-year="2022" data-level="" data-venue=""><a href="https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=KrR9i8YAAAAJ&cstart=20&pagesize=80&citation_for_view=KrR9i8YAAAAJ:Zph67rFs4hoC">Enhancing online epidemic supervising system by compartmental and gru fusion model</a>. J Ma, X Wang, Y Wang, J Wang, X Chu, J Zhao. Mob. Inf. Syst. 2022</li>
+    <li id="paper-2024-X-UNKNOWN-2" data-year="2024" data-level="" data-venue=""><a href="https://www.jos.org.cn/jos/ch/reader/view_abstract.aspx?file_no=7065">面向鲁棒图结构防御的过参数化图神经网络</a>. 初旭， 马辛宇， 林阳， 王鑫， 王亚沙， 朱文武， 梅宏. 软件学报 2024</li>
 </ul>
 
+    <!--
+        这里省略了您原文件中的一些论文条目，以保持代码简洁。
+        实际文件中所有的 <li ...> 都会被保留。
+    -->
 
-</body>
-</html></title>
-</head>
-<body>
+   <script>
+        // --- 3. 新增：滚动展示器逻辑 ---
+        let slideIndex = 1;
+        let slideTimer; // 用于自动播放的计时器
 
-</body>
-<style>
-  /* 高亮对应期刊的所有论文 */
-  .paper-highlight {
-    background-color: #fff3cd;   /* 柔和一点的黄底 */
-    border-radius: 4px;
-    padding: 2px 4px;
-    transition: background-color 0.3s ease;
-  }
-</style>
+        // 核心函数：显示幻灯片
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (slides.length === 0) return; // 如果没有幻灯片，退出
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  // 清除之前的高亮
-  function clearHighlights() {
-    document.querySelectorAll('li[data-year][data-venue].paper-highlight')
-      .forEach(function (li) {
-        li.classList.remove('paper-highlight');
-      });
-  }
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            // 隐藏所有幻灯片
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            // 移除所有 "active" 标记
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            // 显示当前幻灯片
+            slides[slideIndex - 1].style.display = "block";
+            // 标记当前圆点
+            dots[slideIndex - 1].className += " active";
+        }
 
-  // 给 News 模块里的每个链接绑定点击事件
-  document.querySelectorAll('.news-list .news-item a').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      e.preventDefault(); // 不用默认锚点跳转，改用我们自己的逻辑
+        // 按钮控制：上一张/下一张
+        function plusSlides(n) {
+            clearTimeout(slideTimer); // 用户手动切换时，重置自动播放计时器
+            showSlides(slideIndex += n);
+            startAutoSlide(); // 重启自动播放
+        }
 
-      const newsItem = this.closest('.news-item');
-      if (!newsItem) return;
+        // 圆点控制：跳转到特定张
+        function currentSlide(n) {
+            clearTimeout(slideTimer); // 用户手动切换时，重置自动播放计时器
+            showSlides(slideIndex = n);
+            startAutoSlide(); // 重启自动播放
+        }
 
-      const year  = newsItem.dataset.year;    // 例如 "2025"
-      const venue = newsItem.dataset.venue;   // 例如 "NeurIPS"
-      // 如果你想再按 level 过滤，也可以读 dataset.level
+        // 启动自动播放
+        function startAutoSlide() {
+             slideTimer = setTimeout(() => {
+                plusSlides(1); // 5秒后自动到下一张
+            }, 5000); // 5000 毫秒 = 5 秒
+        }
 
-      // 清除旧高亮
-      clearHighlights();
+        // --- 页面加载时执行 ---
+        document.addEventListener('DOMContentLoaded', function() {
 
-      // 找到所有 论文列表中 对应年份 + 对应期刊 的条目
-      const selector = 'li[data-year="' + year + '"][data-venue="' + venue + '"]';
-      const papers = document.querySelectorAll(selector);
+            // --- 4. 修改：动态创建幻灯片 ---
+            const newsList = document.querySelector('.news-list');
+            const slideshowContainer = document.getElementById('news-slideshow');
+            const dotsContainer = document.getElementById('news-dots');
+            const newsItems = newsList.querySelectorAll('.news-item');
 
-      if (papers.length === 0) {
-        return;
-      }
+            if (newsItems.length > 0) {
+                newsItems.forEach((li, index) => {
+                    const venue = li.dataset.venue || 'News'; // 获取 venue, 否则用 'News'
+                    const year = li.dataset.year;
+                    const level = li.dataset.level;
+                    const linkElement = li.querySelector('a');
 
-      // 给所有匹配论文加高亮
-      papers.forEach(function (li) {
-        li.classList.add('paper-highlight');
-      });
+                    if (!linkElement) return; // 如果没有链接，跳过
 
-      // 滚动到第一篇论文的位置
-      const first = papers[0];
-      first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // 1. 创建幻灯片 DOM
+                    const slideDiv = document.createElement('div');
+                    slideDiv.className = 'mySlides fade';
 
-      // 同时把 URL 的 hash 改成第一篇的 id（保持锚点语义）
-      if (first.id) {
-        history.replaceState(null, '', '#' + first.id);
-      }
+                    // 替换为您自己的图片URL。这里使用占位符。
+                    // --- 图片更换点 ---
+                    // 您需要修改下面这一行来使用您自己的图片
+                    // const imgSrc = `https://placehold.co/800x400/555/eee?text=${venue}+${year}`;
+
+                    // 示例 1：如果您有固定的图片（例如放在 'images' 文件夹下）
+                    // 您可以根据 venue 名字来命名图片，例如 "ACL.jpg", "NeurIPS.png"
+                     const imgSrc = `assets/${venue}.jpg`;
+
+                    // 示例 2：或者您可以使用一个固定的图片
+                    // const imgSrc = 'images/my_default_news_image.png';
+
+                    // 示例 3：或者您可以为每条新闻手动指定一个图片URL
+                    //
+                    // 1. 首先在上面的 HTML <ul> 列表中为每个 <li> 添加 data-img 属性
+                    // <li class="news-item" data-year="2025" ... data-venue="ACL" data-img="images/acl_image.jpg">...</li>
+                    //
+                    // 2. 然后在这里读取它：
+                    // const userImg = li.dataset.img;
+                    // const imgSrc = userImg ? userImg : `https://placehold.co/800x400/555/eee?text=${venue}+${year}`; // 如果没指定 data-img，则使用占位符
+
+
+
+
+                    // 复制 <a> 元素，并把 li 上的 data 属性附加到 <a> 上
+                    const newLink = linkElement.cloneNode(true);
+                    newLink.dataset.year = year;
+                    newLink.dataset.venue = venue;
+                    newLink.dataset.level = level;
+
+                    slideDiv.innerHTML = `
+                        <img src="${imgSrc}" style="width:100%" alt="News about ${venue}">
+                        <div class="text">${newLink.outerHTML}</div>
+                    `;
+                    slideshowContainer.insertBefore(slideDiv, slideshowContainer.querySelector('.prev')); // 插入到 "prev" 按钮前
+
+                    // 2. 创建圆点 DOM
+                    const dotSpan = document.createElement('span');
+                    dotSpan.className = 'dot';
+                    dotSpan.onclick = () => currentSlide(index + 1);
+                    dotsContainer.appendChild(dotSpan);
+                });
+
+                // 3. 隐藏原始列表
+                newsList.style.display = 'none';
+
+                // 4. 初始化幻灯片显示
+                showSlides(slideIndex);
+                startAutoSlide(); // 开始自动播放
+
+            } else {
+                // 如果没有新闻，隐藏滚动器
+                slideshowContainer.style.display = 'none';
+                dotsContainer.style.display = 'none';
+            }
+
+// --- 5. 修改：论文高亮逻辑 ---
+
+// 清除之前的高亮 (函数保留)
+function clearHighlights() {
+    document.querySelectorAll('li[data-year][data-venue].paper-highlight, li[data-year][data-venue].paper-focus')
+        .forEach(function(li) {
+            li.classList.remove('paper-highlight');
+            li.classList.remove('paper-focus');
+        });
+}
+
+// 监听滚动器内的链接
+document.querySelectorAll('.slideshow-container .text a').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+        e.preventDefault(); // 阻止默认锚点跳转
+
+        const year = this.dataset.year;
+        const venue = this.dataset.venue;
+
+        if (!year || !venue) return;
+
+        clearHighlights();
+
+        // 先拿到所有匹配 year + venue 的 li
+        const candidates = document.querySelectorAll(
+            'li[data-year="' + year + '"][data-venue="' + venue + '"]'
+        );
+
+        // 过滤掉 news-list 里的 li，只保留真正的论文条目
+        const papers = Array.from(candidates).filter(function(li) {
+            return !li.closest('.news-list');
+        });
+
+        if (papers.length === 0) return;
+
+        // 给所有匹配论文加高亮
+        papers.forEach(function(li) {
+            li.classList.add('paper-highlight');
+        });
+
+        // 给第一篇论文做焦点滚动 + 动画
+        const first = papers[0];
+        first.classList.remove('paper-focus');
+        void first.offsetWidth; // 触发重绘，确保动画可重复
+        first.classList.add('paper-focus');
+
+        first.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+
+        if (first.id) {
+            history.replaceState(null, '', '#' + first.id);
+        }
     });
-  });
 });
-</script>
+
+        });
+    </script>
+</body>
 </html>
